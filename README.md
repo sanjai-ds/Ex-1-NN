@@ -1,7 +1,7 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>R. SANJAI S</H3>
+<H3>212223230186</H3>
 <H3>EX. NO.1</H3>
-<H3>DATE</H3>
+<H3>DATE: 14/05/2026     </H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
 
 ## AIM:
@@ -37,12 +37,64 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+```
+import pandas as pd
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+Customer_detail=pd.read_csv("Churn_Modelling.csv")
+Customer_detail.head()
+Customer_detail.info()
+Customer_detail.dtypes
+Customer_detail.nunique()
+print(Customer_detail.columns)
+Customer_detail.drop(["CustomerId","Surname","Age","Geography","Gender"],axis=1,inplace=True)   
+Customer_detail.head()
+Customer_detail.describe().round()
+scaler = StandardScaler()
+Detail2= pd.DataFrame(scaler.fit_transform(Customer_detail)).round(2)
+Detail2
+x=Detail2.iloc[:,:-1].values
+x
+y=Detail2.iloc[:,-1].values
+y
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size = 0.2)
+print(x_train)
+print(len(x_train))
+print(x_test)
+print(len(x_test))
+```
+
 
 
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
 
+### DATASET:
+![alt text](image.png)
+
+### DROPING THE UNWANTED DATASET:
+![alt text](image-1.png)
+
+### CHECKING FOR NULL VALUES
+![alt text](image-2.png)
+
+### CHECKING FOR DUPLICATED VALUES
+![alt text](image-3.png)
+
+### DESCRIBING THE DATASET
+![alt text](image-4.png)
+
+### SCALING THE DATASET
+![alt text](image-5.png)
+
+### X FEATURES
+![alt text](image-6.png)
+
+### Y FEATURES
+![alt text](image-7.png)
+
+### SPLITING THE DATASET INTO TRAINING AND TESTING
+![alt text](image-8.png)
 
 ## RESULT:
 Thus, Implementation of Data Preprocessing is done in python  using a data set downloaded from Kaggle.
