@@ -1,7 +1,7 @@
-<H3>NAME : Sanjai S</H3>
-<H3>REGISTER NO: 212223230186</H3>
+<H3>ENTER YOUR NAME : Sanjai S</H3>
+<H3>ENTER YOUR REGISTER NO: 212223230186</H3>
 <H3>EX. NO.1</H3>
-<H3>DATE : 17/05/2026</H3>
+<H3>DATE : 17-05-2026</H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
 
 ## AIM:
@@ -37,120 +37,97 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-Import Libraries
-```py
-
-from google.colab import files
+```
 import pandas as pd
-import seaborn as sns
 import io
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
-from scipy import stats
-import numpy as np
-```
-Read the dataset
-```py
-df=pd.read_csv("Churn_Modelling.csv")
 
-```
-Checking Data
-```py
-df.head()
-df.tail()
-df.columns
-```
-Check the missing data
-```py
-df.isnull().sum()
-```
-
-Check for Duplicates
-```
-df.duplicated()
-```
-Assigning Y
-```
-y = df.iloc[:, -1].values
-print(y)
-```
-Check for duplicates
-```py
-df.duplicated()
-```
-Check for outliers
-```py
-df.describe()
-```
-Dropping string values data from dataset
-```py
-data = df.drop(['Surname', 'Geography','Gender'], axis=1)
+data = pd.read_csv("Churn_Modelling.csv")
+data
 data.head()
-```
-Normalize the dataset
-```py
+
+X=data.iloc[:,:-1].values
+X
+
+y=data.iloc[:,-1].values
+y
+
+data.isnull().sum()
+
+data.duplicated()
+
+data.describe()
+
+data = data.drop(['Surname', 'Geography','Gender'], axis=1)
+data.head()
+
 scaler=MinMaxScaler()
 df1=pd.DataFrame(scaler.fit_transform(data))
 print(df1)
-```
-Split the dataset
-```py
-X=df.iloc[:,:-1].values
-y=df.iloc[:,-1].values
-print(X)
-print(y)
-```
-Training and testing model
-```py
+
 X_train ,X_test ,y_train,y_test=train_test_split(X,y,test_size=0.2)
-print("X_train\n")
-print(X_train)
-print("\nLenght of X_train ",len(X_train))
-print("\nX_test\n")
-print(X_test)
-print("\nLenght of X_test ",len(X_test))
+
+X_train
+
+X_test
+
+print("Lenght of X_test ",len(X_test))
 ```
 
 
 ## OUTPUT:
-Data checking:
 
-![output](1.png)
+### Dataset:
 
-Missing Data:
-
-![output](4.png)
-
-Duplicates identification:
-
-![output](6.png)
+<img width="1207" height="209" alt="image" src="https://github.com/user-attachments/assets/8cee71de-f6c1-4f74-9800-9462a6c1f3e3" />
 
 
-Values of 'Y':
+### X Values:
 
-![output](3.png)
+<img width="566" height="145" alt="image" src="https://github.com/user-attachments/assets/64fa5799-cc3b-43bb-b490-8047a60e1d94" />
 
 
-Outliers:
+### Y Values:
 
-![output](7.png)
+<img width="278" height="43" alt="image" src="https://github.com/user-attachments/assets/35262d4a-3bc7-402d-bae2-dc3a723edfbb" />
 
-Checking datasets after dropping string values data from dataset:
 
-![output](8.png)
+### Null Values:
 
-Normalize the dataset:
+<img width="198" height="527" alt="image" src="https://github.com/user-attachments/assets/8f8eaf7c-e01b-406c-ad0b-76486c6519f6" />
 
-![output](9.png)
+### Duplicated Values:
 
-Split the dataset:
+<img width="190" height="462" alt="image" src="https://github.com/user-attachments/assets/04ae0e26-e61c-4656-8d83-ef9ddd3c99f4" />
 
-![output](10.png)
 
-Training and testing model:
+### Description:
 
-![output](11.png)
+<img width="1297" height="314" alt="image" src="https://github.com/user-attachments/assets/39d86540-5bea-422d-8914-532cf99234ca" />
+
+
+### Normalized Dataset:
+
+<img width="624" height="494" alt="image" src="https://github.com/user-attachments/assets/494485ec-2ac4-44fc-b878-a3a2e707258d" />
+
+
+
+### Training Data:
+
+<img width="605" height="150" alt="image" src="https://github.com/user-attachments/assets/8a42ca38-7d92-4e7a-b197-00fdf3c1dcec" />
+
+
+### Testing Data:
+
+<img width="581" height="137" alt="image" src="https://github.com/user-attachments/assets/307adc7a-5979-4879-823a-0d2340532f77" />
+
+### Length of X_test:
+
+<img width="203" height="31" alt="image" src="https://github.com/user-attachments/assets/362818cf-24e7-42f2-867a-3e6ed874922c" />
+
+
 
 
 ## RESULT:
