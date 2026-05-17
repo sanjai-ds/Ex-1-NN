@@ -1,7 +1,7 @@
-<H3>R. SANJAI S</H3>
-<H3>212223230186</H3>
+<H3>NAME : Sanjai S</H3>
+<H3>REGISTER NO: 212223230186</H3>
 <H3>EX. NO.1</H3>
-<H3>DATE: 14/05/2026     </H3>
+<H3>DATE : 17/05/2026</H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
 
 ## AIM:
@@ -37,64 +37,121 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-```
+Import Libraries
+```py
+
+from google.colab import files
 import pandas as pd
+import seaborn as sns
 import io
 from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
-Customer_detail=pd.read_csv("Churn_Modelling.csv")
-Customer_detail.head()
-Customer_detail.info()
-Customer_detail.dtypes
-Customer_detail.nunique()
-print(Customer_detail.columns)
-Customer_detail.drop(["CustomerId","Surname","Age","Geography","Gender"],axis=1,inplace=True)   
-Customer_detail.head()
-Customer_detail.describe().round()
-scaler = StandardScaler()
-Detail2= pd.DataFrame(scaler.fit_transform(Customer_detail)).round(2)
-Detail2
-x=Detail2.iloc[:,:-1].values
-x
-y=Detail2.iloc[:,-1].values
-y
-x_train,x_test,y_train,y_test = train_test_split(x,y,test_size = 0.2)
-print(x_train)
-print(len(x_train))
-print(x_test)
-print(len(x_test))
+from scipy import stats
+import numpy as np
+```
+Read the dataset
+```py
+df=pd.read_csv("Churn_Modelling.csv")
+
+```
+Checking Data
+```py
+df.head()
+df.tail()
+df.columns
+```
+Check the missing data
+```py
+df.isnull().sum()
 ```
 
+Check for Duplicates
+```
+df.duplicated()
+```
+Assigning Y
+```
+y = df.iloc[:, -1].values
+print(y)
+```
+Check for duplicates
+```py
+df.duplicated()
+```
+Check for outliers
+```py
+df.describe()
+```
+Dropping string values data from dataset
+```py
+data = df.drop(['Surname', 'Geography','Gender'], axis=1)
+data.head()
+```
+Normalize the dataset
+```py
+scaler=MinMaxScaler()
+df1=pd.DataFrame(scaler.fit_transform(data))
+print(df1)
+```
+Split the dataset
+```py
+X=df.iloc[:,:-1].values
+y=df.iloc[:,-1].values
+print(X)
+print(y)
+```
+Training and testing model
+```py
+X_train ,X_test ,y_train,y_test=train_test_split(X,y,test_size=0.2)
+print("X_train\n")
+print(X_train)
+print("\nLenght of X_train ",len(X_train))
+print("\nX_test\n")
+print(X_test)
+print("\nLenght of X_test ",len(X_test))
+```
 
 
 ## OUTPUT:
+Data checking:
 
-### DATASET:
-![alt text](image.png)
+![output](1.png)
 
-### DROPING THE UNWANTED DATASET:
-![alt text](image-1.png)
+Missing Data:
 
-### CHECKING FOR NULL VALUES
-![alt text](image-2.png)
+![output](4.png)
 
-### CHECKING FOR DUPLICATED VALUES
-![alt text](image-3.png)
+Duplicates identification:
 
-### DESCRIBING THE DATASET
-![alt text](image-4.png)
+![output](6.png)
 
-### SCALING THE DATASET
-![alt text](image-5.png)
 
-### X FEATURES
-![alt text](image-6.png)
+Values of 'Y':
 
-### Y FEATURES
-![alt text](image-7.png)
+![output](3.png)
 
-### SPLITING THE DATASET INTO TRAINING AND TESTING
-![alt text](image-8.png)
+
+Outliers:
+
+![output](7.png)
+
+Checking datasets after dropping string values data from dataset:
+
+![output](8.png)
+
+Normalize the dataset:
+
+![output](9.png)
+
+Split the dataset:
+
+![output](10.png)
+
+Training and testing model:
+
+![output](11.png)
+
 
 ## RESULT:
 Thus, Implementation of Data Preprocessing is done in python  using a data set downloaded from Kaggle.
